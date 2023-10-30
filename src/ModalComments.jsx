@@ -43,6 +43,7 @@ const ModalComments = ({ handleModal, setModal, blogId, profilePhoto }) => {
     // this part of the code is for optimization
     setMessages([...messages, newMessage]);
     newMessage.username = sessionStorage.getItem("username");
+    newMessage.photo = profilePhoto;
 
     axios
       .post(`${import.meta.env.VITE_BACKEND_ADDRESS}/comment`, newMessage)
@@ -82,14 +83,14 @@ const ModalComments = ({ handleModal, setModal, blogId, profilePhoto }) => {
             <div className="photo-comment-section">
               <img
                 className="photo-profile-message"
-                title={sessionStorage.getItem("username")}
-                src={profilePhoto}
+                title={message.username}
+                src={message.photo}
                 alt=""
               />
             </div>
             <div className="name-text-section">
               <div className="name-comments">
-                {sessionStorage.getItem("username")}
+                {message.username}
               </div>
               <p className="text-comments">{message.body}</p>
               <div className="line-separate"></div>
