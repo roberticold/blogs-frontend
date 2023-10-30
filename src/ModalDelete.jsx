@@ -26,10 +26,11 @@ const ModalDelete = ({ data,setData,handleModal, setModal,id,newInfo }) => {
     // this part of the code is to optimize speed when deleting
     const newData = data.filter((blog)=> blog.id!=blogid)
     setData(newData)
+    navigate("/");
     
     axios.delete(`${import.meta.env.VITE_BACKEND_ADDRESS}/blog/delete/` + blogid).then(() => {
       newInfo();
-      navigate("/");
+      
     });
   };
   return (

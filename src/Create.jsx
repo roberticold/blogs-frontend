@@ -15,8 +15,10 @@ const Create = ({ newInfo, setData,data }) => {
     e.preventDefault();
     const author = sessionStorage.getItem("id");
     const blog = { title, body, author, image };
+    
     // this part is to optimize speed
-    setData([...data,blog])
+    const beforeBlog = { title, body, author:sessionStorage.getItem("username"), image };
+    setData([...data,beforeBlog])
 
 
     axios.post(`${import.meta.env.VITE_BACKEND_ADDRESS}/create`, blog).then(() => {
