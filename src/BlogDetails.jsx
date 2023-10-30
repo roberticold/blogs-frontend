@@ -5,11 +5,9 @@ import Comments from "./Comments";
 import axios from "axios";
 import Like from "./Like";
 
-
 import { Link } from "react-router-dom";
 
-
-const BlogDetails = ({ newInfo,profilePhoto }) => {
+const BlogDetails = ({ newInfo, profilePhoto, data, setData }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
@@ -50,15 +48,25 @@ const BlogDetails = ({ newInfo,profilePhoto }) => {
       <div className="blog-details">
         {isLoading && <div>Loading...</div>}
         {error && <div>{error}</div>}
-        
+
         {title && (
           <article>
             <div className="image-created-container">
               <img className="image-created-blog" src={image} alt="" />
             </div>
-            <h2 >{title}</h2>
+            <h2>{title}</h2>
             <p>Written by {author}</p>
-            <textarea rows="15" style={{ resize: "none", height:"auto", width:"100%", borderStyle:"none", outline:"none", marginTop:"15px",}}>
+            <textarea
+              rows="15"
+              style={{
+                resize: "none",
+                height: "auto",
+                width: "100%",
+                borderStyle: "none",
+                outline: "none",
+                marginTop: "15px",
+              }}
+            >
               {body}
             </textarea>
           </article>
@@ -67,6 +75,8 @@ const BlogDetails = ({ newInfo,profilePhoto }) => {
       {/* modal starts here */}
       {modal && (
         <ModalDelete
+          data={data}
+          setData={setData}
           handleModal={handleModal}
           id={id}
           setModal={setModal}
@@ -74,13 +84,11 @@ const BlogDetails = ({ newInfo,profilePhoto }) => {
         />
       )}
       {/* modal finishes here */}
-      <div >
-      <div className="likes-comments-wrapper">
-      <Like blogId={id} />
-      <Comments blogId={id} profilePhoto={profilePhoto} />
-      </div>
-        
-        
+      <div>
+        <div className="likes-comments-wrapper">
+          <Like blogId={id} />
+          <Comments blogId={id} profilePhoto={profilePhoto} />
+        </div>
 
         {/* condition to show the delete and edit button */}
 
@@ -90,16 +98,11 @@ const BlogDetails = ({ newInfo,profilePhoto }) => {
               Delete
             </button>
             <Link className="links" to={`/edit/${id}`}>
-            <button className="button-link">
-              
-                Edit
-              
-            </button>
+              <button className="button-link">Edit</button>
             </Link>
           </>
         )}
       </div>
-      
     </div>
   );
 };

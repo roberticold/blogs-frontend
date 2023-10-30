@@ -20,6 +20,7 @@ const Create = ({ newInfo, setData,data }) => {
 
 
     axios.post(`${import.meta.env.VITE_BACKEND_ADDRESS}/create`, blog).then(() => {
+      
       newInfo();
       navigate("/");
     });

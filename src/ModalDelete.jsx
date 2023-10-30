@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 
-const ModalDelete = ({ handleModal, setModal,id,newInfo }) => {
+const ModalDelete = ({ data,setData,handleModal, setModal,id,newInfo }) => {
   const modalRef = useRef();
   const navigate = useNavigate();
 
@@ -23,6 +23,10 @@ const ModalDelete = ({ handleModal, setModal,id,newInfo }) => {
   }
 
   const handleDelete = (blogid) => {
+    // this part of the code is to optimize speed when deleting
+    const newData = data.filter((blog)=> blog.id!=blogid)
+    setData(newData)
+    
     axios.delete(`${import.meta.env.VITE_BACKEND_ADDRESS}/blog/delete/` + blogid).then(() => {
       newInfo();
       navigate("/");

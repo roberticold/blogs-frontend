@@ -35,9 +35,10 @@ const Settings = ({ setProfilePhoto, newInfo }) => {
   };
 
   const handleChangePhoto = () => {
-    const blog = { id: id, photo: image };
+    const photo = { id: id, photo: image };
+   
     axios
-      .post(`${import.meta.env.VITE_BACKEND_ADDRESS}/user/photoUpdate`, blog)
+      .post(`${import.meta.env.VITE_BACKEND_ADDRESS}/user/photoUpdate`, photo)
       .then(() => {
         setProfilePhoto(image);
       });

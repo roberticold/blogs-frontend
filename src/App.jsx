@@ -187,7 +187,7 @@ function App() {
             <Route
               exact
               path="/blog/:id"
-              element={<BlogDetails profilePhoto={profilePhoto} newInfo={handleNewInfo} />}
+              element={<BlogDetails data={data} setData={setData} profilePhoto={profilePhoto} newInfo={handleNewInfo} />}
             />
 
             <Route path="*" element={<Page404 />} />
