@@ -18,7 +18,7 @@ const ModalComments = ({ handleModal, setModal,blogId ,profilePhoto}) => {
 
         .then((response) => {
             setMessages(response.data.blogs)
-        console.log(response.data.blogs)
+        
 
          
         })

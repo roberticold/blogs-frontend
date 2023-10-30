@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Create = ({ newInfo }) => {
+const Create = ({ newInfo, setData,data }) => {
   
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -15,6 +15,10 @@ const Create = ({ newInfo }) => {
     e.preventDefault();
     const author = sessionStorage.getItem("id");
     const blog = { title, body, author, image };
+    // this part is to optimize speed
+    setData([...data,blog])
+
+
     axios.post(`${import.meta.env.VITE_BACKEND_ADDRESS}/create`, blog).then(() => {
       newInfo();
       navigate("/");
@@ -32,7 +36,7 @@ const Create = ({ newInfo }) => {
         formData
       )
       .then((response) => setImage(response.data.secure_url))
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   };
 
   return (

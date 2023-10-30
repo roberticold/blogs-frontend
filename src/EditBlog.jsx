@@ -34,7 +34,7 @@ const EditBlog = ({newInfo}) => {
         formData
       )
       .then((response) => setImage(response.data.secure_url))
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   };
 
   const handleSubmit = (e) => {

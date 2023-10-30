@@ -31,7 +31,7 @@ const Settings = ({ setProfilePhoto, newInfo }) => {
         setImage(response.data.secure_url);
         setImagePreview(response.data.secure_url);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   };
 
   const handleChangePhoto = () => {

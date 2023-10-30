@@ -31,7 +31,7 @@ function App() {
       .get(`${import.meta.env.VITE_BACKEND_ADDRESS}/blogs`)
 
       .then((response) => {
-        console.log("useEffect mounted data added");
+        
 
         setData(response.data.blogs);
         setDataLength(response.data.blogs.length);
@@ -170,7 +170,7 @@ function App() {
             <Route
               exact
               path="/create"
-              element={<Create newInfo={handleNewInfo} />}
+              element={<Create newInfo={handleNewInfo} data={data} setData={setData}/>}
             />
             <Route
               exact

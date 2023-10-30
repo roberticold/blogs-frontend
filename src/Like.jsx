@@ -28,7 +28,10 @@ const Like = ({ blogId }) => {
   }, [newInfo]);
 
   const handleLike = () => {
+    // this is to optimize the speed
     isLiked==0? setIsLiked(1):setIsLiked(0)
+    isLiked==0? setTotaLikes(totalLikes+1):setTotaLikes(totalLikes-1)
+    
 
     axios
       .post(`${import.meta.env.VITE_BACKEND_ADDRESS}/blog/post/like`, obj)
