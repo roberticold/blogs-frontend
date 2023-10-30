@@ -540,6 +540,10 @@ button {
 
  }  
 
+ .textarea-text{
+  font-size: medium;
+ }
+
  .modal-comments-wrapper{
   position: relative;
   box-shadow: 1px 1px 8px 1px rgba(5, 5, 5, 0.2);

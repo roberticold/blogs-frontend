@@ -57,6 +57,7 @@ const BlogDetails = ({ newInfo, profilePhoto, data, setData }) => {
             <h2>{title}</h2>
             <p>Written by {author}</p>
             <textarea
+            className="textarea-text"
               rows="15"
               style={{
                 resize: "none",
