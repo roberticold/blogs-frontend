@@ -8,6 +8,8 @@ const Like = ({ blogId }) => {
   const [totalLikes, setTotaLikes] = useState();
   const [newInfo, setNewInfo] = useState(true);
 
+  
+
   const obj = {
     blogId: blogId,
     userId: sessionStorage.getItem("id"),
@@ -21,10 +23,13 @@ const Like = ({ blogId }) => {
       .then((response) => {
         setIsLiked(response.data.like_status);
         setTotaLikes(response.data.total_likes);
+        
       });
   }, [newInfo]);
 
   const handleLike = () => {
+    isLiked==0? setIsLiked(1):setIsLiked(0)
+
     axios
       .post(`${import.meta.env.VITE_BACKEND_ADDRESS}/blog/post/like`, obj)
 
