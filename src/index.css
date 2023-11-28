@@ -403,9 +403,31 @@ button {
   
 }
 
-/* .center,.linktosignin{
+.center,.linktosignin{
   text-decoration: none;
-} */
+  font-size: small;
+  position: relative;
+  top:-3px;
+  left:10px;
+  color:darkcyan;
+  
+  
+  
+}
+
+.forgot-password-wrapper{
+  
+  text-align:left;
+  
+}
+.forgot-password{
+  
+  text-decoration: none;
+  font-size: small;
+  font-weight: bold;
+  color: rgb(81, 81, 220);
+  
+}
 
 .div-containing-modal a:hover {
   color: darkcyan;

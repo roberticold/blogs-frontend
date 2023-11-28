@@ -6,13 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 import ModalDeleteProfile from "./ModalDeleteProfile";
 
 const Settings = ({ setProfilePhoto, newInfo }) => {
-  const [newPassword, setNewPassword] = useState();
-  const [confirmPassword, setconfirmPassword] = useState();
+  const [newEmail, setNewEmail] = useState();
+  const [confirmEmail, setConfirmEmail] = useState();
   const [imagePreview, setImagePreview] = useState(
     "https://res.cloudinary.com/personal-cloud/image/upload/v1622763605/Sportify%20Images/photo_ebtvt9.png"
   );
   const [image, setImage] = useState();
-  const [passwordType, setPasswordType] = useState("password");
 
   const [modal, setModal] = useState(false);
   const id = sessionStorage.getItem("id");
@@ -36,7 +35,7 @@ const Settings = ({ setProfilePhoto, newInfo }) => {
 
   const handleChangePhoto = () => {
     const photo = { id: id, photo: image };
-   
+
     axios
       .post(`${import.meta.env.VITE_BACKEND_ADDRESS}/user/photoUpdate`, photo)
       .then(() => {
@@ -48,24 +47,15 @@ const Settings = ({ setProfilePhoto, newInfo }) => {
     modal ? setModal(false) : setModal(true);
   };
 
-  const changeType = () => {
-    passwordType == "password"
-      ? setPasswordType("text")
-      : setPasswordType("password");
-  };
-
-  const handleChangePassword = (e) => {
+  const handleChangeEmail = (e) => {
     e.preventDefault();
 
-    if (newPassword == confirmPassword) {
-      const blog = { id: id, password: newPassword };
+    if (newEmail == confirmEmail) {
+      const blog = { id: id, email: newEmail };
       axios
-        .post(
-          `${import.meta.env.VITE_BACKEND_ADDRESS}/user/passwordUpdate`,
-          blog
-        )
+        .put(`${import.meta.env.VITE_BACKEND_ADDRESS}/user/emailUpdate`, blog)
         .then(() => {
-          toast.success("Password changed successfully!", {
+          toast.success("Email changed successfully!", {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -75,10 +65,12 @@ const Settings = ({ setProfilePhoto, newInfo }) => {
             progress: undefined,
             theme: "light",
           });
+          setConfirmEmail(" ");
+          setNewEmail(" ");
         });
     } else {
       console.log("the toast");
-      toast.error("Passwords dont match.", {
+      toast.error("Emails dont match.", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -118,33 +110,30 @@ const Settings = ({ setProfilePhoto, newInfo }) => {
           </div>
         </div>
         <div className="change-credentials-wrapper">
-          <p>Change Password</p>
+          <p>Change Email</p>
           <div className="change-password-card">
             <form className="password-card-form" onSubmit={null}>
-              <label>New Password</label>
+              <label>New Email</label>
 
               <input
-                onChange={(e) => setNewPassword(e.target.value)}
-                type={passwordType}
+                onChange={(e) => setNewEmail(e.target.value)}
+                type="email"
                 required
+                value={newEmail}
               />
 
-              <label>Confirm New Password</label>
+              <label>Confirm New Email</label>
               <input
-                onChange={(e) => setconfirmPassword(e.target.value)}
-                type={passwordType}
+                onChange={(e) => setConfirmEmail(e.target.value)}
+                type="email"
                 required
                 className="settings-confirm-new-password"
+                value={confirmEmail}
               />
-              <div className="showpasswordcheckboxwraper">
-                <div className="showpasswordcheckbox">
-                  <input className='ckeckbox-settings-show-password' type="checkbox" onClick={changeType} />
-                </div>
-                <div className="showpasswordtext">Show Password</div>
-              </div>
+
               <div className="signup-wrapper">
                 <div className="right">
-                  <button onClick={handleChangePassword} className="signin-btn">
+                  <button onClick={handleChangeEmail} className="signin-btn">
                     Change
                   </button>
                 </div>

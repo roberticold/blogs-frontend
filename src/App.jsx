@@ -4,6 +4,9 @@ import Settings from "./Settings";
 import { Route, Routes } from "react-router-dom";
 import Create from "./Create";
 import BlogDetails from "./BlogDetails";
+import ResetPasswordRequest from "./ResetPasswordRequest";
+import ResetPasswordChange from "./ResetPasswordChange";
+import EmailSent from "./EmailSent";
 import EditBlog from "./EditBlog";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useEffect, useState, useRef } from "react";
@@ -133,6 +136,16 @@ function App() {
           <Route exact path="/" element={<Signin handleSignIn={signin} />} />
 
           <Route exact path="/signup" element={<Signup />} />
+
+          <Route exact path="/passwordreset" element={<ResetPasswordRequest />} />
+
+          <Route exact path="/emailsent" element={<EmailSent />} />
+          <Route
+              
+              path="/oldpasswordreset"
+              element={<ResetPasswordChange />}
+              
+            />
 
           <Route path="/*" element={<Page404 />} />
         </Routes>

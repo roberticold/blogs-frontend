@@ -52,9 +52,18 @@ const Signin = (props) => {
                 Sign Up
               </Link>
             </div>
+            
           </div>
+          
         </form>
+        <div className="forgot-password-wrapper">
+              <Link className="forgot-password" to={"/passwordreset"}>
+                Forgot Password?
+              </Link>
+            </div>
+        
       </div>
+      
     </>
   );
 };
